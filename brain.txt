@@ -1,8 +1,0 @@
-Set up database engine
-	Device database
-	Energy Data database
-Create Crud functions:
-	create data to database
-	read
-	update
-	delete
