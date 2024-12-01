@@ -2,16 +2,16 @@
 """
 Main app script
 """
-from crud.energy_data import *
-from datetime import datetime, timedelta
+from fastapi import FastAPI
+from app.routers.device_endpoints import device_route
+from app.routers.energy_data_endpoints import energy_data_route
 
-def main():
-    reading = get_aggregate_consumption()
-    print('Voltage', '\tCurrent', '\tPower')
-    if reading:
-        print(reading['voltage'], '\t', reading['current'], '\t', reading['power'])
-    else:
-        print("Device not found")
 
-if __name__=='__main__':
-    main()
+app = FastAPI()
+
+@app.get('/')
+def home():
+    return 'Welcome to Curon energy monitoring system'
+
+app.include_router(device_route)
+app.include_router(energy_data_route)

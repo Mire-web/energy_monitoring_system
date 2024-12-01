@@ -7,12 +7,13 @@ import datetime
 # Define Energy Data Class
 
 class Energy_Data():
-    def __init__(self, did: int, voltage: float, current: float, power: float, ts: datetime):
+    def __init__(self, did: int, name, voltage: float, current: float, power: float, ts: datetime):
         __device_id = did
         __voltage = voltage
         __current = current
         __power = power
         __timestamp = ts
+        __device_name = name
         
     def voltage(self):
         return self.__voltage

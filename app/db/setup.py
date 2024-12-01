@@ -26,5 +26,16 @@ class Energy_data(Base):
     current = Column(Float, nullable=False)
     power = Column(Float, nullable=False)
     timestamp = Column(DateTime, nullable=False)
+    
+    def as_dict(self):
+        return {
+            "id": self.id,
+			"device": self.device.name,
+            "device-model": self.device_id,
+            "voltage": self.voltage,
+            "current": self.current,
+            "power": self.power,
+            "timestamp": self.timestamp
+		}
 
 Base.metadata.create_all(engine)

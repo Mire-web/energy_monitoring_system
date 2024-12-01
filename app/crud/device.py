@@ -2,8 +2,8 @@
 """
 Description: Crud operations for device
 """
-from crud import Session
-from db.setup import Device
+from app.crud import Session
+from app.db.setup import Device
 
 
 session = Session()
@@ -26,16 +26,20 @@ def add_new_device(name: str, model: int, location: str):
 # Update Device info
 def update_device(model: int, updates: dict):
     device = session.query(Device).filter_by(id=model).first()
-    for key, value in updates.items():
-        if (hasattr(device, key)):
-            setattr(device, key, value)
-        else:
-            raise KeyError
+    if not device:
+        add_new_device(updates['name'], model, updates['location'])
+    else:
+        for key, value in updates.items():
+            if (hasattr(device, key)):
+                setattr(device, key, value)
+            else:
+                return False
     try:
         session.commit()
-        return device
+        return {'success': True}
     except Exception as e:
         # TODO: log error to file
+        print(e)
         session.rollback()
         return False
 
