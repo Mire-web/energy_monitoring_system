@@ -1,0 +1,99 @@
+.dashboard {
+    display: flex;
+    padding: 0px 20px;
+    justify-content: flex-start; /* Changed to flex-start to allow for growth of items */
+    gap: 25px 20px; /* Vertical gap (row), no horizontal gap */
+    flex-wrap: wrap;
+}
+
+.dashboard .metric-card {
+    background-color: rgb(34, 54, 99);
+    border-radius: 5px;
+    min-width: 30%; /* Ensures a minimum width */
+    flex: 1 1 calc(10% - 20px); /* Grow and shrink, initial size considering gap */
+    max-width: 100%; /* Don't exceed container width */
+}
+
+.dashboard .metric-card:first-child {
+    min-width: 26%;
+}
+.dashboard .metric-card:nth-child(2) {
+    min-width: 32%;
+}
+.dashboard .metric-card:nth-child(3) {
+    min-width: 36%;
+}
+
+.dashboard .cost-predicted {
+    display: flex;
+    font-size: 0.8rem;
+    padding-right: 20px;
+}
+.dashboard .change-in-cost {
+    display: flex;
+    font-size: 0.7rem;
+    padding-right: 20px;
+}
+.dashboard .usage-estimate {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.7rem;
+    padding: 0px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+.dashboard .active-appliances {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.7rem;
+    justify-content: space-around;
+    padding: 0px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+.usage-estimate-description {
+    color: white;
+    width: 100%;
+}
+.guage-chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.guage-chart .guage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard .progress-chart1, .dashboard .progress-chart1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Target items in the last row to expand if there's space */
+.dashboard .metric-card:nth-last-child(-n+3) {
+    flex-grow: 2; /* Allow these items to grow more than others */
+}
+
+/* Adjust for single or double items in the last row */
+.dashboard > .metric-card:last-child:nth-child(3n+1) {
+    flex-basis: calc(100% - 25px); /* If there's only one item */
+}
+.dashboard > .metric-card:last-child:nth-child(3n+2) {
+    flex-basis: calc(50% - 25px); /* If there are two items */
+}
+
+.metric-card .title {
+    box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
+    color: var(--color-text-light);
+    padding: 1.4vh 0;
+    text-align: left;
+    width: 100%;
+}
+
+.title h4 {
+    margin: 0;
+    margin-left: 10px;
+    font-weight: 400;
+}

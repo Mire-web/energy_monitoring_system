@@ -1,0 +1,23 @@
+:root {
+    /* Primary Theme Colors */
+    --color-primary: #4caf50;      /* Green for energy */
+    --color-secondary: #ff9800;   /* Orange for warnings */
+  
+    /* Text Colors */
+    --color-text-dark: #333333;
+    --color-text-light: #ffffff;
+    --color-sidebar-gray: #b9bfc3;
+  
+    /* Background Colors */
+    --color-bg: #f4f4f4;
+    --color-bg-dark: #1c4e5a;
+    --comp-bg: #142f54;
+    --app-bg: #247081;
+  
+    /* Chart Colors */
+    --color-chart-1: #4caf50;
+    --color-chart-2: #ff9800;
+    --color-chart-3: #2196f3;
+    --color-chart-4: #f44336;
+  }
+  
