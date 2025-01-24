@@ -1,0 +1,20 @@
+.period-selector {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .period-btn {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    background-color: #f4f4f4;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .period-btn.active {
+    background-color: #247081;
+    color: white;
+    border-color: #247081;
+  }
+  

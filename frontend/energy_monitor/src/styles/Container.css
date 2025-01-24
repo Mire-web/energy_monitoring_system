@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    /* flex-direction: column; Header on top, content below */
+    min-height: 100vh; /* Full viewport height */
+    min-width: 100%;
+  }
+  
+  .container > .sidebar {
+    flex: 0 0 12%; /* Sidebar takes only its required space */
+  }
+
+  .container > main {
+    /* overflow-y: auto; Scrollable if content overflows */
+    display: flex;
+    flex: 1; /* Main takes remaining space */
+    flex-direction: column;
+    max-width: 86%;
+  }
+    
+  .container > .header {
+    flex: 0 0 auto; /* Header takes only its required space */
+  }
+
+  
