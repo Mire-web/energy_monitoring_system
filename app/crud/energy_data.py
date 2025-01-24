@@ -160,10 +160,55 @@ def get_total_consumption():
             total_power += voltage * current
         return {'voltage': f'{total_voltage:.4f}V',
                 'current': f'{total_current:.4f}A',
-                'power': f'{total_power/1000:.4f}kW'}
+                'power': f'{total_power:.4f}W'}
     else:
         return None
 
 # Get device total
+def get_device_day_consumption(model: int, date: datetime.date):
+    readings = session.query(Energy_data).with_entities(Device.name, Energy_data.voltage, Energy_data.current).filter((Energy_data.id == model & func.date(Energy_data.timestamp == date))).join(Device, Energy_data.id == Device.id).all()
+    if readings:
+        total_voltage = 0
+        total_current = 0
+        total_power = 0
+        for data in readings:
+            total_voltage += data.voltage
+            total_current += data.current
+            total_power += total_voltage * total_current
+        return {'name': Device.name,
+                'voltage': f'{total_voltage:.4f}V',
+                'current': f'{total_current:.4f}A',
+                'power': f'{total_power:.4f}W'}
+    else:
+        return None
 # Get device total within range
+def get_device_total_within(model: int, startDate: datetime.date, endDate: datetime.date):
+    readings = session.query(Energy_data).with_entities(Device.name, Energy_data.voltage, Energy_data.current).filter((Energy_data.id == model & (func.date(Energy_data.timestamp == startDate) & func.date(Energy_data.timestamp == endDate)))).join(Device, Energy_data.id == Device.id).all()
+    if readings:
+        total_voltage = 0
+        total_current = 0
+        total_power = 0
+        for data in readings:
+            total_voltage += data.voltage
+            total_current += data.current
+            total_power += total_voltage * total_current
+        return {'name': Device.name,
+                'voltage': f'{total_voltage:.4f}V',
+                'current': f'{total_current:.4f}A',
+                'power': f'{total_power:.4f}W'}
+
 # Get total within range
+def get_total_within(startDate: datetime.date, endDate: datetime.date):
+    readings = session.query(Energy_data).with_entities(Device.name, Energy_data.voltage, Energy_data.current).filter(((func.date(Energy_data.timestamp == startDate) & func.date(Energy_data.timestamp == endDate)))).join(Device, Energy_data.id == Device.id).all()
+    if readings:
+        total_voltage = 0
+        total_current = 0
+        total_power = 0
+        for data in readings:
+            total_voltage += data.voltage
+            total_current += data.current
+            total_power += total_voltage * total_current
+        return {'name': Device.name,
+                'voltage': f'{total_voltage:.4f}V',
+                'current': f'{total_current:.4f}A',
+                'power': f'{total_power:.4f}W'}

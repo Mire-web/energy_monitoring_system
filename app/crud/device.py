@@ -58,6 +58,8 @@ def get_device(model: int):
 # Delete device
 def delete_device(model: int):
     device = session.query(Device).filter_by(id=model).first()
+    if not device:
+        return None
     session.delete(device)
     try:
         session.commit()

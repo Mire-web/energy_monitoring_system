@@ -57,7 +57,7 @@ async def get_date_reading(id: int, date: datetime):
     return readings
 
 @device_route.get('/device/{id}/energy_consumption/range')
-async def get_range_reading(id: int, start_date: datetime, end_date: datetime | None = None):
+async def get_range_reading(id: int, start_date: datetime, end_date: datetime = None):
     if end_date and end_date < start_date:
         raise HTTPException(status.HTTP_400_BAD_REQUEST, detail='End date should be greater than Start date')
     readings = get_device_reading_range(id, start_date, end_date)
