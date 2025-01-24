@@ -13,7 +13,7 @@ const Sidebar = () => {
       <nav className="sidebar-nav">
         <ul>
           <li>
-            <NavLink to="/dashboard" className={({ isActive }) => isActive ? "active link" : "link"}>
+            <NavLink to="/" className={({ isActive }) => isActive ? "active link" : "link"}>
                 <FontAwesomeIcon icon={faTachometerAlt} className="icon" /> Dashboard
             </NavLink>
           </li>
