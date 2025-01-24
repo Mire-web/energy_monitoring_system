@@ -2,7 +2,7 @@
 import '../styles/Dashboard.css';
 
 import {
-  PieChart, Pie, Cell, LabelList,
+  PieChart, Pie, Cell,
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Text,
   AreaChart, Area, ReferenceLine,
 //   Tooltip, 
@@ -47,24 +47,24 @@ const Dashboard = () => {
     { value: 70 }, // Value displayed in the gauge
     { value: 30 }, // Remaining part of the circle
   ];
-  const progress_data = [
+  const progress_data1 = [
     {
       name: 'Emission',
       tillDate: 36.4,
       predicted: 181.8,
       tillDateLabel: '36.4 Kg of CO2',
       predictedLabel: '181.8 Kg of CO2',
-    },
-    {
-      name: 'Green Energy Generated',
-      tillDate: 21.20,
-      goal: 50,
-      tillDateLabel: '21.20 kWh',
-      goalLabel: '50 kWh',
-    },
+      value: 40,
+    }
   ];
   const guage_color = ['#22E412', '#ccc'];
   const chartValue = 47;
+//   const dummy_data = [
+//     {
+//         name: 'Energy Usage',
+//         value: 75,
+//       },
+//   ]
   
   // Colors for the pie sections
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
@@ -205,7 +205,7 @@ const Dashboard = () => {
             <ResponsiveContainer width="100%" height={300} className={'active-appliances'}>
                 <BarChart data={appliances_data} layout="vertical" margin={{ top: 5, right: 30, left: -2, bottom:0 }}
                 style={{ width: '100%'}}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#ccc" />
+                    {/* <CartesianGrid strokeDasharray="3 3" stroke="#ccc" /> */}
                     <XAxis type="number" tickFormatter={(value) => `${value} kWh`} stroke="white" />
                     <YAxis type="category" dataKey="name" width={100} stroke="white" />
                     <Tooltip />
@@ -252,48 +252,59 @@ const Dashboard = () => {
                         ))}
                     </Pie>
                 </PieChart>
+                <div style={{ display:'flex', marginTop: '0', fontSize: '12px', color: '#ffffff', 
+                   }}
+                    className='guage-value'>
+                    <p style={{ fontSize: '2rem', margin: '0' }}>{chartValue}</p>
+                    <p style={{ fontSize: '1rem', margin: '0' }}>kWh/Sqft</p>
+                </div>
             </ResponsiveContainer>
-            <div style={{ marginTop: '0', fontSize: '12px', color: '#ffffff', 
-                textAlign: 'center', position: 'relative', top: '-38vh'}}>
-                <p style={{ fontSize: '2rem', margin: '0' }}>{chartValue}</p>
-                <p style={{ fontSize: '1rem', margin: '0' }}>kWh/Sqft</p>
-            </div>
         </section>
         {/* Carbon Footprint */}
-        <section className='metric-card'>
+        <section className='metric-card progress-card'>
             <div className='title'>
                 <h4>CARBON FOOTPRINT</h4>
             </div>
-            <ResponsiveContainer width="100%" height={50}  className={'progress-chart1'}>
-                <BarChart width={500} height={50} data={[progress_data[0]]} margin={{ top: 0, right: 0, left: 0, bottom: 0, }}
-                layout="horizontal">
-                    <XAxis type="number" hide />
-                    <YAxis type="category" dataKey="name" hide />
+            
+            <ResponsiveContainer width="100%" height={20}  className={'progress-chart1'}>
+                <div className='emission-info'>
+                    <p>{progress_data1[0]['name']}</p>
+                    <div className='emission-info-labels'>
+                        <p>Till Date</p>
+                        <p>Predicted</p>
+                    </div>
+                </div>
+                <BarChart data={progress_data1} layout="vertical"
+                margin={{top: 0, bottom: 5,}} style={{ marginTop: '0px', marginBottom: '0px',
+                    padding: '0px',
+                }}>
+                    <XAxis type="number" domain={[0, 100]} hide/>
+                    <YAxis dataKey="name" type="category" width={10} hide/>
                     <Tooltip />
-                    <Bar dataKey="tillDate" fill="#8884d8" barSize={30} background={{ fill: '#eee' }}>
-                    <LabelList dataKey="tillDateLabel" position="insideRight" fill="white" />
-                    </Bar>
-                    <Bar dataKey="predicted" fill="rgba(136, 132, 216, 0.3)" barSize={30}>
-                    <LabelList dataKey="predictedLabel" position="insideRight" fill="white" />
-                    </Bar>
+                    <Bar dataKey="value" fill="#8884d8" background={{ fill: '#eee' }} 
+                    barSize={10}/>
                 </BarChart>
-            </ResponsiveContainer>
-            <div className='title'>
-                <h4>Green </h4>
-            </div>
-            <ResponsiveContainer width="100%" height={50}  className={'progress-chart2'}>
-                <BarChart width={500} height={50} data={[progress_data[1]]} margin={{ top: 0, right: 0, left: 0, bottom: 0, }}
-                layout="horizontal">
-                    <XAxis type="number" hide />
-                    <YAxis type="category" dataKey="name" hide />
+                <div className='emission-info-values'>
+                    <p>{progress_data1[0]['tillDateLabel']}</p>
+                    <p>{progress_data1[0]['predictedLabel']}</p>
+                </div>
+
+                <div className='emission-info2'>
+                    <p>Green Energy Generated</p>
+                </div>            
+                <BarChart data={progress_data1} layout="vertical"
+                margin={{top: 0, bottom: 0,}} style={{ marginTop: '-15px', marginBottom: '0px',
+                    padding: '0px',
+                }}>
+                    <XAxis type="number" domain={[0, 100]} hide/>
+                    <YAxis dataKey="name" type="category" width={10} hide/>
                     <Tooltip />
-                    <Bar dataKey="tillDate" fill="#2ECC71" barSize={30} background={{ fill: '#eee' }}>
-                    <LabelList dataKey="tillDateLabel" position="insideRight" fill="white" />
-                    </Bar>
-                    <Bar dataKey="goal" fill="rgba(46, 204, 113, 0.3)" barSize={30}>
-                    <LabelList dataKey="goalLabel" position="insideRight" fill="white" />
-                    </Bar>
+                    <Bar dataKey="value" fill="#8884d8" background={{ fill: '#eee' }} 
+                    barSize={10}/>
                 </BarChart>
+                <div className='emission-info-values2'>
+                    <p>21.20 kWh</p>
+                </div>
             </ResponsiveContainer>
         </section>
     </div>
