@@ -7,8 +7,8 @@ import Header from './components/Header'
 import Sidebar from './components/Sidebar'
 // import Subheader from './components/Subheader'
 import Dashboard from './pages/Dashboard'
-// import Cost from './pages/Cost'
-// import ApplianceUsage from './pages/ApplianceUsage'
+import Cost from './pages/Cost'
+import ApplianceUsage from './pages/ApplianceUsage'
 // import UsageByRoom from './pages/UsageByRoom'
 // import Emissions from './pages/Emissions'
 
@@ -23,8 +23,10 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          {/* <Route path="/cost" element={<Cost />} />
-          <Route path="/appliance-usage" element={<ApplianceUsage />} />
+          <Route path="/cost" element={<Cost />} />
+          <Route path="/appliances" element={<ApplianceUsage />} />
+          {/* 
+           />
           <Route path="/usage-by-room" element={<UsageByRoom />} />
           <Route path="/emissions" element={<Emissions />} /> */}
         </Routes>
