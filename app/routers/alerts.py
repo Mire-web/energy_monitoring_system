@@ -2,7 +2,6 @@ from fastapi import APIRouter, HTTPException, status
 from datetime import datetime
 from app.crud.alert import *
 
-
 alert_route = APIRouter()
 
 @alert_route.get('/alerts/history', status_code=status.HTTP_200_OK)

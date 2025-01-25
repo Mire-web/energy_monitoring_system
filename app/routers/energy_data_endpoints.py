@@ -1,7 +1,8 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, status, BackgroundTasks
 from app.schemas.schema import EnergyDataSchema
 from datetime import datetime
 from app.crud.energy_data import *
+from app.utils.background import check_data_against_threshold
 
 
 energy_data_route = APIRouter()
@@ -14,12 +15,13 @@ async def get_all():
     return readings
 
 @energy_data_route.post('/energy_consumption/', status_code=status.HTTP_201_CREATED)
-async def add_new_reading(data: EnergyDataSchema):
+async def add_new_reading(data: EnergyDataSchema, background_task: BackgroundTasks):
     reading = add_reading(data.did, data.voltage, data.current)
     if reading == 0:
         raise HTTPException(status.HTTP_400_BAD_REQUEST, detail='Invalid Device id')
     if not reading:
         raise HTTPException(status.HTTP_500_INTERNAL_SERVER_ERROR)
+    background_task.add_task(check_data_against_threshold, data)
     return {"success": True}
 
 @energy_data_route.get('/energy_consumption/')
