@@ -1,0 +1,97 @@
+/* src/components/Appliance.css */
+.usage-page {
+    background-color: #1a1a2e;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .time-selector {
+    margin-bottom: 20px;
+  }
+  
+  .time-selector button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1em;
+    margin: 0 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .time-selector button.active {
+    background: #0f3460;
+    border-radius: 5px;
+  }
+  
+  .heatmap-container {
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  .room-row {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .room-label {
+    width: 150px;
+    padding: 10px;
+    text-align: right;
+    margin-right: 10px;
+  }
+  
+  .heatmap {
+    display: flex;
+    flex-wrap: wrap;
+    width: calc(100% - 160px);
+  }
+  
+  .heatmap-cell {
+    width: 20px;
+    height: 20px;
+    margin: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .usage-0 { background-color: #003f5c; }
+  .usage-1 { background-color: #2f4b7c; }
+  .usage-2 { background-color: #665191; }
+  .usage-3 { background-color: #a05195; }
+  .usage-4 { background-color: #d45087; }
+  .usage-5 { background-color: #f95d6a; position: relative; }
+  
+  .prediction-label {
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px;
+    font-size: 0.8em;
+    white-space: nowrap;
+    z-index: 10;
+  }
+  
+  .legend {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+  }
+  
+  .legend-item span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+  
